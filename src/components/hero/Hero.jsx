@@ -1,7 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import defaultImg1 from "../../img1.jpg";
 import defaultImg2 from "../../img2.jpg";
-import "./Hero.css";
+import "./hero.css";
 import { Link } from "react-router";
 
 export default function Hero({ img1 = defaultImg1, img2 = defaultImg2 }) {

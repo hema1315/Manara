@@ -1,0 +1,224 @@
+.library-page {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  min-height: 85vh;
+}
+.lib-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 20px;
+  gap: 20px;
+}
+
+.lib-spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid var(--border-light);
+  border-top-color: var(--accent-gold);
+  border-radius: 50%;
+  animation: libSpin 0.9s linear infinite;
+}
+
+@keyframes libSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.lib-loading {
+  color: var(--primary-forest);
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.library-header {
+  margin-bottom: 40px;
+  background: linear-gradient(
+    90deg,
+    var(--primary-forest) 0%,
+    var(--primary-surface) 100%
+  );
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 32px 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.library-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.library-title-group {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.lib-icon-box {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-lg);
+  background-color: var(--primary-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.lib-header-icon {
+  color: var(--accent-gold-hover);
+  fill: var(--accent-gold-hover);
+}
+
+.library-title-group h1 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-darker);
+  margin-bottom: 4px;
+}
+
+.library-subtitle {
+  color: var(--primary-forest);
+  font-size: 0.95rem;
+}
+
+.lib-count-pill {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--shadow-sm);
+}
+
+.lib-count-pill span {
+  color: var(--primary-forest);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.lib-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px;
+  background-color: var(--bg-card);
+  border: 1.5px dashed var(--border-light);
+  border-radius: var(--radius-xl);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.lib-empty-icon-wrap {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--bg-cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  color: var(--text-light);
+  border: 1px solid var(--border-light);
+}
+
+.lib-empty-icon {
+  color: var(--primary-forest);
+  opacity: 0.7;
+}
+
+.lib-empty h2 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--primary-darker);
+  margin-bottom: 12px;
+}
+
+.lib-empty p {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  max-width: 440px;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.lib-explore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent-gold);
+  color: var(--primary-darker);
+  padding: 12px 30px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.lib-explore-btn:hover {
+  transform: translateX(2px);
+}
+
+.lib-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 28px;
+  width: 100%;
+}
+
+.lib-card-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.lib-delete-btn {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 5;
+  background: var(--accent-gold-hover);
+  color: var(--primary-surface);
+  border-radius: var(--radius-full);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lib-delete-btn:hover {
+  transform: scale(1.08);
+}
+
+@media (max-width: 900px) {
+  .lib-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .library-header {
+    background: var(--primary-surface);
+  }
+}

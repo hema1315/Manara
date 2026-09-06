@@ -1,0 +1,140 @@
+.auth-page {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 16px;
+  background-image: radial-gradient(
+    rgba(19, 78, 56, 0.04) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  padding: 40px 32px;
+}
+
+.auth-title {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--primary-dark);
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 14px;
+  margin-bottom: 28px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-field label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.auth-field input {
+  padding: 12px 16px;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  color: var(--text-main);
+  background: var(--bg-page);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.auth-field input:focus {
+  border-color: var(--primary-forest);
+}
+
+.auth-error {
+  background: #fdecea;
+  color: #c0392b;
+  font-size: 13.5px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+}
+
+.auth-info {
+  background: var(--accent-gold-soft);
+  color: var(--primary-dark);
+  font-size: 13.5px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+}
+
+.auth-submit {
+  background: var(--accent-gold);
+  color: var(--primary-darker);
+  font-weight: 700;
+  font-size: 15.5px;
+  padding: 13px;
+  border-radius: var(--radius-full);
+  margin-top: 6px;
+  transition: all 0.2s ease;
+}
+
+.auth-submit:hover:not(:disabled) {
+  background: var(--accent-gold-hover);
+  transform: translateY(-1px);
+}
+
+.auth-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 22px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.auth-switch a {
+  color: var(--primary-forest);
+  font-weight: 600;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
+
+.auth-forgot-link {
+  align-self: flex-end;
+  font-size: 13px;
+  color: var(--primary-forest);
+  margin-top: -8px;
+}
+
+.auth-forgot-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 28px 22px;
+  }
+}

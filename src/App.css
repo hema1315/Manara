@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap");
+
+:root {
+ 
+  --primary-dark: #0d3627;
+  --primary-darker: #08261b;
+  --primary-forest: #134e38;
+  --primary-light: #1b6348;
+  --primary-surface: #e9f2ee;
+
+
+  --accent-gold: #f5b722;
+  --accent-gold-hover: #e5a714;
+  --accent-gold-soft: #fef4dc;
+
+ 
+  --bg-page: #fbf9f5;
+  --bg-cream: #f4efe6;
+  --bg-card: #ffffff;
+  --bg-overlay: rgba(8, 38, 27, 0.6);
+
+
+  --text-main: #14241e;
+  --text-muted: #566860;
+  --text-light: #899c93;
+  --border-light: #e6dfd5;
+  --border-subtle: rgba(19, 78, 56, 0.12);
+
+
+  --font-heading: "IBM Plex Sans Arabic", sans-serif;
+  --font-literary: "Amiri", serif;
+  --font-body: "IBM Plex Sans Arabic", sans-serif;
+
+
+  --container-max: 1350px;
+  --radius-full: 9999px;
+  --radius-xl: 28px;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+
+
+  --shadow-sm: 0 2px 8px rgba(13, 54, 39, 0.04);
+  --shadow-md: 0 10px 30px rgba(13, 54, 39, 0.08);
+  --shadow-lg: 0 20px 45px rgba(13, 54, 39, 0.14);
+  --shadow-gold: 0 8px 24px rgba(245, 183, 34, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  direction: rtl;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+input {
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+::-webkit-scrollbar-thumb {
+  background: #cdd6d1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-forest);
+}

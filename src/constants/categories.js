@@ -1,0 +1,17 @@
+export const ALL_CATEGORIES = [
+  { label: "روايات", topic: "fiction" },
+  { label: "أدب كلاسيكي", topic: "classics" },
+  { label: "مغامرات", topic: "adventure" },
+  { label: "غموض وجريمة", topic: "mystery" },
+  { label: "تاريخ", topic: "history" },
+  { label: "فلسفة", topic: "philosophy" },
+  { label: "علم نفس", topic: "psychology" },
+  { label: "شعر", topic: "poetry" },
+  { label: "سير ذاتية", topic: "biography" },
+  { label: "فن", topic: "art" },
+  { label: "خيال علمي", topic: "science fiction" },
+  { label: "فانتازيا", topic: "fantasy" },
+  { label: "رومانسية", topic: "romance" },
+  { label: "رعب", topic: "horror" },
+  { label: "أدب أطفال", topic: "children" },
+];

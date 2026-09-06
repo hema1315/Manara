@@ -1,0 +1,228 @@
+.favorites-page {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  min-height: 85vh;
+}
+.fav-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 20px;
+  gap: 20px;
+}
+
+.fav-spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid var(--border-light);
+  border-top-color: var(--accent-gold);
+  border-radius: 50%;
+  animation: favSpin 0.9s linear infinite;
+}
+
+@keyframes favSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.fav-loading {
+  color: var(--primary-forest);
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.favorites-header {
+  margin-bottom: 40px;
+  background: linear-gradient(
+    90deg,
+    var(--primary-forest) 0%,
+    var(--primary-surface) 100%
+  );
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 32px 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.favorites-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.favorites-title-group {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.fav-icon-box {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-lg);
+  background-color: var(--primary-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.fav-header-icon {
+  color: var(--accent-gold-hover);
+  fill: var(--accent-gold-hover);
+}
+
+.favorites-title-group h1 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-darker);
+  margin-bottom: 4px;
+}
+
+.favorites-subtitle {
+  color: var(--primary-forest);
+  font-size: 0.95rem;
+}
+
+.fav-count-pill {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--shadow-sm);
+}
+
+.fav-count-pill span {
+  color: var(--primary-forest);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.fav-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px;
+  background-color: var(--bg-card);
+  border: 1.5px dashed var(--border-light);
+  border-radius: var(--radius-xl);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.fav-empty-icon-wrap {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--bg-cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  color: var(--text-light);
+  border: 1px solid var(--border-light);
+}
+
+.fav-empty-icon {
+  color: var(--primary-forest);
+  opacity: 0.7;
+}
+
+.fav-empty h2 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--primary-darker);
+  margin-bottom: 12px;
+}
+
+.fav-empty p {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  max-width: 440px;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.fav-explore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent-gold);
+  color: var(--primary-darker);
+  padding: 12px 30px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.fav-explore-btn:hover {
+  transform: translateX(2px);
+}
+
+.fav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 28px;
+  width: 100%;
+}
+
+.fav-card-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.fav-delete-btn {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 5;
+  background-color: var(--accent-gold-hover);
+  color: var(--primary-surface);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-full);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fav-delete-btn:hover {
+  transform: scale(1.08);
+}
+
+.fav-delete-btn:hover .fav-delete-tooltip {
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .fav-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+}
+@media (max-width: 500px) {
+  .favorites-header {
+    background: var(--primary-surface);
+  }
+}

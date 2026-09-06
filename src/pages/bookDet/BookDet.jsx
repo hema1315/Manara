@@ -13,11 +13,6 @@ import { useLibrary } from "../../contexts/LibraryContext";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../contexts/AuthContext";
 
-function toHttps(url) {
-  if (!url) return url;
-  return url.replace(/^http:\/\//i, "https://");
-}
-
 async function downloadReadableHtml(url, filename) {
   try {
     const res = await fetch(url);
@@ -95,7 +90,7 @@ export default function BookDet() {
 
   async function handleReadableDownload() {
     setDownloadingType("html");
-    await downloadReadableHtml(toHttps(book.read_url), `${book.title}.html`);
+    await downloadReadableHtml(book.read_url, `${book.title}.html`);
     setDownloadingType(null);
   }
 
@@ -212,7 +207,7 @@ export default function BookDet() {
               ✕
             </button>
             <iframe
-              src={toHttps(book.read_url)}
+              src={book.read_url}
               title={book.title}
               className="preview-frame"
             />

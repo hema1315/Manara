@@ -14,15 +14,17 @@ import { useFavorites } from "../../contexts/FavoritesContext";
 import { useLibrary } from "../../contexts/LibraryContext";
 import { useAuth } from "../../contexts/AuthContext";
 
+// تحويل أي رابط HTTP إلى HTTPS بأمان ودعم الروابط النسبية للبروتوكول
 function secureUrl(url) {
-  return url?.replace(/^http:\/\//i, "https://");
+  if (!url) return "";
+  return url.replace(/^http:\/\//i, "https://").replace(/^\/\//, "https://");
 }
 
 async function downloadReadableHtml(url, filename) {
-  try {
-    const secureReadUrl = secureUrl(url);
-    const res = await fetch(secureReadUrl);
+  const secureReadUrl = secureUrl(url);
 
+  try {
+    const res = await fetch(secureReadUrl);
     if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
 
     let html = await res.text();
@@ -46,8 +48,9 @@ async function downloadReadableHtml(url, filename) {
 
     URL.revokeObjectURL(blobUrl);
   } catch (error) {
-    console.error("Failed to download book:", error);
-    window.open(secureUrl(url), "_blank");
+    // خوادم Gutenberg تمنع الـ fetch عبر CORS، لذا نقوم بفتح الرابط مباشرة للقراءة/الحفظ
+    console.warn("Direct fetch blocked by CORS, opening in new tab:", error);
+    window.open(secureReadUrl, "_blank", "noopener,noreferrer");
   }
 }
 
@@ -127,6 +130,7 @@ export default function BookDet() {
   const isFav = isFavorite(book.id);
   const inLibrary = isInLibrary(book.id);
   const previewUrl = secureUrl(book.read_url);
+  const coverUrl = secureUrl(book.cover);
 
   const requireAuth = (action) => {
     if (!user) {
@@ -140,7 +144,7 @@ export default function BookDet() {
   return (
     <div className="bookDetails-page">
       <div className="bookDetails-top">
-        <img src={book.cover} alt={book.title} className="bookDetails-cover" />
+        <img src={coverUrl} alt={book.title} className="bookDetails-cover" />
 
         <div className="bookDetails-info">
           <Link to={`/categories/${book.topic}`} className="bookDetails-topic">
@@ -240,6 +244,7 @@ export default function BookDet() {
               src={previewUrl}
               title={book.title}
               className="preview-frame"
+              sandbox="allow-same-origin allow-scripts"
             />
           </div>
         </div>

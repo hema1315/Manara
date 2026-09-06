@@ -24,7 +24,7 @@ export default function Navbar() {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
 
   const isLoggedIn = !!user;
 
@@ -46,6 +46,7 @@ export default function Navbar() {
   }
   useEffect(() => {
     setQuery("");
+    setMobileMenuOpen(false);
   }, [location]);
 
   useEffect(() => {
@@ -229,59 +230,71 @@ export default function Navbar() {
       </header>
 
       {mobileMenuOpen && (
-        <div className="mobile-nav-drawer">
-          <div className="mobile-nav-content">
-            <div className="mobile-search-area mobile-search-wrapper">
-              <form onSubmit={handleSearchSubmit} className="nav-search-bar">
-                <Search
-                  size={18}
-                  className="search-icon"
-                  onClick={handleSearchSubmit}
-                />
+        <>
+          <div
+            className="mobile-backdrop"
+            onClick={() => setMobileMenuOpen(false)}
+          />
 
-                <input
-                  type="text"
-                  placeholder="ابحث عن كتاب أو كاتب..."
-                  value={query}
-                  maxLength={50}
-                  onChange={handleSearchChange}
-                  onFocus={() => query.trim() && setShowSuggestions(true)}
-                />
-              </form>
-              {renderSuggestions()}
-            </div>
-            <div className="mobile-links-list">
-              <Link to="/" onClick={() => setMobileMenuOpen(false)}>
-                الرئيسية
-              </Link>
+          <div className="mobile-nav-drawer">
+            <div className="mobile-nav-content">
+              <div className="mobile-search-area mobile-search-wrapper">
+                <form onSubmit={handleSearchSubmit} className="nav-search-bar">
+                  <Search
+                    size={18}
+                    className="search-icon"
+                    onClick={handleSearchSubmit}
+                  />
 
-              <Link to="/books" onClick={() => setMobileMenuOpen(false)}>
-                تصفح الكتب
-              </Link>
+                  <input
+                    type="text"
+                    placeholder="ابحث عن كتاب أو كاتب..."
+                    value={query}
+                    maxLength={50}
+                    onChange={handleSearchChange}
+                    onFocus={() => query.trim() && setShowSuggestions(true)}
+                  />
+                </form>
+                {renderSuggestions()}
+              </div>
+              <div className="mobile-links-list">
+                <Link to="/" onClick={() => setMobileMenuOpen(false)}>
+                  الرئيسية
+                </Link>
 
-              <Link to="/popular" onClick={() => setMobileMenuOpen(false)}>
-                الأكثر قراءة
-              </Link>
+                <Link to="/books" onClick={() => setMobileMenuOpen(false)}>
+                  تصفح الكتب
+                </Link>
 
-              <button
-                className="mobile-categories-btn"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  setIsSidebarOpen(true);
-                }}
-              >
-                <span>استعراض التصنيفات</span>
-                <ChevronLeft size={18} />
-              </button>
-            </div>
+                <Link to="/popular" onClick={() => setMobileMenuOpen(false)}>
+                  الأكثر قراءة
+                </Link>
 
-            <div className="mobile-footer-actions">
-              <Link to={"/login"} className="nav-cta-btn full-width">
-                تسجيل الدخول
-              </Link>
+                <button
+                  className="mobile-categories-btn"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setIsSidebarOpen(true);
+                  }}
+                >
+                  <span>استعراض التصنيفات</span>
+                  <ChevronLeft size={18} />
+                </button>
+              </div>
+
+              <div className="mobile-footer-actions">
+                <Link
+                  to={"/login"}
+                  style={{ display: isLoggedIn ? "none" : "flex" }}
+                  className="nav-cta-btn full-width"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  تسجيل الدخول
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       <div

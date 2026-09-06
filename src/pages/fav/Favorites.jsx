@@ -25,6 +25,10 @@ export default function Favorites() {
     }
   }, [favorites.length, totalPages, page]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
+
   if (loading) {
     return (
       <div className="favorites-page">
@@ -35,9 +39,6 @@ export default function Favorites() {
       </div>
     );
   }
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [page]);
 
   return (
     <div className="favorites-page">

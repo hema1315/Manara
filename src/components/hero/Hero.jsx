@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Zap, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import defaultImg1 from "../../img1.jpg";
 import defaultImg2 from "../../img2.jpg";
 import "./Hero.css";

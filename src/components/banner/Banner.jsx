@@ -1,4 +1,4 @@
-import { BookOpen, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import img from "./img.jpg";
 import { Link } from "react-router";
 import "./banner.css";

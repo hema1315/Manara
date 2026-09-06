@@ -17,7 +17,7 @@ export default function Library() {
   const currentItems = library.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo(0, 0);
   }, [page]);
 
   useEffect(() => {

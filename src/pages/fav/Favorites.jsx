@@ -1,12 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { useFavorites } from "../../contexts/FavoritesContext";
-import {
-  Heart,
-  BookOpen,
-  Trash2,
-  ArrowRight,
-} from "lucide-react";
+import { Heart, BookOpen, Trash2, ArrowRight } from "lucide-react";
 import Book from "../../components/book/Book";
 import "./favorites.css";
 
@@ -25,10 +20,6 @@ export default function Favorites() {
   );
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [page]);
-
-  useEffect(() => {
     if (page > totalPages) {
       setPage(1);
     }
@@ -44,6 +35,9 @@ export default function Favorites() {
       </div>
     );
   }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
 
   return (
     <div className="favorites-page">

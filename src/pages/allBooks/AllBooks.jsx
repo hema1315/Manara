@@ -32,6 +32,9 @@ export default function AllBooks() {
     getAllBooks();
   }, [page]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
   return (
     <div className="allBooks-page">
       <div className="all-head">

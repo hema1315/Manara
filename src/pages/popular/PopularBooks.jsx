@@ -33,6 +33,10 @@ export default function PopularBooks() {
     getPopular();
   }, [page]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
+
   return (
     <div className="popular-page">
       <div className="pop-head">

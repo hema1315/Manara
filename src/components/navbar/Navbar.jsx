@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import "./navbar.css";
 import { Link, useLocation, useNavigate } from "react-router";
-import logo from "./img1.png";
+import logo from "/img1.png";
 import { ALL_CATEGORIES } from "../../constants/categories";
 import { searchBooks } from "../../constants/booksData";
 import { useAuth } from "../../contexts/AuthContext";

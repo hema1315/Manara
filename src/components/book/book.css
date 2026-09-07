@@ -55,7 +55,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0;
-  direction: ltr;
+  direction: rtl;
 }
 
 .book-author {

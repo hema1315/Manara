@@ -64,13 +64,15 @@ export function FavoritesProvider({ children }) {
        fetchFavorites();
      }
    } else {
-     const coverUrl = `https://www.gutenberg.org/cache/epub/${book.id}/pg${book.id}.cover.medium.jpg`;
-     const newFav = {
-       user_id: user.id,
-       book_id: bookIdStr,
-       book_title: book.title,
-       cover_url: book.cover_url || coverUrl,
-     };
+      const coverUrl =
+        book.cover ||
+        `https://downloads.hindawi.org/covers/svg/270x360/${book.id}.svg`;
+      const newFav = {
+        user_id: user.id,
+        book_id: bookIdStr,
+        book_title: book.title,
+        cover_url: coverUrl,
+      };
 
      const { data, error } = await supabase
        .from("favorites")

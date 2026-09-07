@@ -102,11 +102,14 @@ export default function Navbar() {
                 onClick={() => handleSelectBook(book)}
               >
                 <img
-                  src={`https://www.gutenberg.org/cache/epub/${book.id}/pg${book.id}.cover.medium.jpg`}
+                  src={
+                    book.cover ||
+                    `https://downloads.hindawi.org/covers/svg/270x360/${book.id}.svg`
+                  }
                   alt={book.title}
                   className="dropdown-book-thumb"
                   onError={(e) => {
-                    e.target.src = "/fallback-cover.png";
+                    e.target.src = `https://downloads.hindawi.org/covers/svg/270x360/${book.id}.svg`;
                   }}
                 />
                 <div className="dropdown-book-info">

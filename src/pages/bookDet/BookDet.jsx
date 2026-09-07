@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router";
-import { Bookmark, Heart } from "lucide-react";
+import { Bookmark, Heart, Download } from "lucide-react";
 import "./bookDet.css";
 
 import {
@@ -13,45 +13,11 @@ import Book from "../../components/book/Book";
 import { useFavorites } from "../../contexts/FavoritesContext";
 import { useLibrary } from "../../contexts/LibraryContext";
 import { useAuth } from "../../contexts/AuthContext";
+import { ALL_CATEGORIES } from "../../constants/categories";
 
-// تحويل أي رابط HTTP إلى HTTPS بأمان ودعم الروابط النسبية للبروتوكول
 function secureUrl(url) {
   if (!url) return "";
   return url.replace(/^http:\/\//i, "https://").replace(/^\/\//, "https://");
-}
-
-async function downloadReadableHtml(url, filename) {
-  const secureReadUrl = secureUrl(url);
-
-  try {
-    const res = await fetch(secureReadUrl);
-    if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
-
-    let html = await res.text();
-    const baseTag = `<base href="${secureReadUrl}">`;
-
-    html = html.includes("<head>")
-      ? html.replace("<head>", `<head>${baseTag}`)
-      : baseTag + html;
-
-    const blobUrl = URL.createObjectURL(
-      new Blob([html], { type: "text/html" }),
-    );
-
-    const link = document.createElement("a");
-    link.href = blobUrl;
-    link.download = filename;
-
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-
-    URL.revokeObjectURL(blobUrl);
-  } catch (error) {
-    // خوادم Gutenberg تمنع الـ fetch عبر CORS، لذا نقوم بفتح الرابط مباشرة للقراءة/الحفظ
-    console.warn("Direct fetch blocked by CORS, opening in new tab:", error);
-    window.open(secureReadUrl, "_blank", "noopener,noreferrer");
-  }
 }
 
 export default function BookDet() {
@@ -60,11 +26,10 @@ export default function BookDet() {
   const { user } = useAuth();
   const { isFavorite, toggleFavorite } = useFavorites();
   const { isInLibrary, toggleLibrary } = useLibrary();
+  const categoris = ALL_CATEGORIES;
 
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [showPreview, setShowPreview] = useState(false);
-  const [downloadingType, setDownloadingType] = useState(null);
   const [rel, setRel] = useState([]);
   const [relLoading, setRelLoading] = useState(true);
 
@@ -105,20 +70,6 @@ export default function BookDet() {
     getRelated();
   }, [book?.topic, book?.id]);
 
-  useEffect(() => {
-    document.body.style.overflow = showPreview ? "hidden" : "auto";
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [showPreview]);
-
-  async function handleReadableDownload() {
-    setDownloadingType("html");
-    await downloadReadableHtml(book.read_url, `${book.title}.html`);
-    setDownloadingType(null);
-  }
-
   if (loading) {
     return <p className="bookDetails-loading">جاري التحميل...</p>;
   }
@@ -129,7 +80,6 @@ export default function BookDet() {
 
   const isFav = isFavorite(book.id);
   const inLibrary = isInLibrary(book.id);
-  const previewUrl = secureUrl(book.read_url);
   const coverUrl = secureUrl(book.cover);
 
   const requireAuth = (action) => {
@@ -141,6 +91,11 @@ export default function BookDet() {
     action();
   };
 
+  const nameCat = categoris.filter((c) => {
+    return c.topic == book?.topic.toLowerCase();
+  });
+  console.log(nameCat);
+
   return (
     <div className="bookDetails-page">
       <div className="bookDetails-top">
@@ -148,7 +103,7 @@ export default function BookDet() {
 
         <div className="bookDetails-info">
           <Link to={`/categories/${book.topic}`} className="bookDetails-topic">
-            {book.topic}
+            {nameCat[0].label || book.topic}
           </Link>
 
           <h1 className="bookDetails-title">{book.title}</h1>
@@ -162,25 +117,17 @@ export default function BookDet() {
           </div>
 
           <div className="bookDetails-actions">
-            {book.read_url && (
-              <>
-                <button
-                  className="btn btn-gold"
-                  disabled={downloadingType === "html"}
-                  onClick={handleReadableDownload}
-                >
-                  {downloadingType === "html"
-                    ? "جاري التحميل..."
-                    : "تحميل نسخة للقراءة"}
-                </button>
-
-                <button
-                  className="btn btn-outline"
-                  onClick={() => setShowPreview(true)}
-                >
-                  معاينة الكتاب
-                </button>
-              </>
+            {book.download_url && (
+              <a
+                href={book.download_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-gold"
+                download={`${book.title}.pdf`}
+              >
+                <Download size={18} />
+                <span>تحميل الكتاب (PDF)</span>
+              </a>
             )}
 
             <button
@@ -229,26 +176,6 @@ export default function BookDet() {
           </div>
         </div>
       </section>
-
-      {showPreview && (
-        <div className="preview-overlay" onClick={() => setShowPreview(false)}>
-          <div className="preview-modal" onClick={(e) => e.stopPropagation()}>
-            <button
-              className="preview-close"
-              onClick={() => setShowPreview(false)}
-            >
-              ✕
-            </button>
-
-            <iframe
-              src={previewUrl}
-              title={book.title}
-              className="preview-frame"
-              sandbox="allow-same-origin allow-scripts"
-            />
-          </div>
-        </div>
-      )}
     </div>
   );
 }

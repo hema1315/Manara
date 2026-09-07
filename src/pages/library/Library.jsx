@@ -1,6 +1,6 @@
 import { useLibrary } from "../../contexts/LibraryContext";
 import { Bookmark } from "lucide-react";
-import UserSavedData from "../../components/UserSavedData/UserSavedData";
+import UserSavedData from "../../components/userSavedData/UserSavedData";
 
 export default function Library() {
   const { library, toggleLibrary, loading } = useLibrary();

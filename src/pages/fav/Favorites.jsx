@@ -1,6 +1,6 @@
 import { useFavorites } from "../../contexts/FavoritesContext";
 import { Heart } from "lucide-react";
-import UserSavedData from "../../components/UserSavedData/UserSavedData";
+import UserSavedData from "../../components/userSavedData/UserSavedData";
 
 export default function Favorites() {
   const { favorites, toggleFavorite, loading } = useFavorites();

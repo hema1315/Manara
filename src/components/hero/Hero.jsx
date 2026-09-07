@@ -24,10 +24,10 @@ export default function Hero({ img1 = defaultImg1, img2 = defaultImg2 }) {
           </p>
 
           <div className="hero-cta-group">
-            <a href="/books" className="hero-primary-btn">
+            <Link to={"/books"} className="hero-primary-btn">
               <span>ابدأ القراءة مجاناً</span>
               <ArrowLeft size={18} />
-            </a>
+            </Link>
           </div>
         </div>
 

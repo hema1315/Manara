@@ -85,13 +85,8 @@ export default function UserSavedData({
       ) : (
         <>
           <div className="sbp-grid">
-            {currentItems.map((item) => {
-              const validCover =
-                item.cover && !item.cover.includes("gutenberg.org")
-                  ? item.cover
-                  : item.cover_url && !item.cover_url.includes("gutenberg.org")
-                    ? item.cover_url
-                    : `https://downloads.hindawi.org/covers/svg/270x360/${item.book_id}.svg`;
+            {currentItems.reverse().map((item) => {
+              const validCover = `https://downloads.hindawi.org/covers/svg/270x360/${item.book_id}.svg`;
 
               const formattedBook = {
                 id: item.book_id,

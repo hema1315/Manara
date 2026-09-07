@@ -1,10 +1,10 @@
-.library-page {
+.sbp-page {
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 40px 24px 80px;
   min-height: 85vh;
 }
-.lib-loading-container {
+.sbp-loading-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,28 +13,28 @@
   gap: 20px;
 }
 
-.lib-spinner {
+.sbp-spinner {
   width: 44px;
   height: 44px;
   border: 3px solid var(--border-light);
   border-top-color: var(--accent-gold);
   border-radius: 50%;
-  animation: libSpin 0.9s linear infinite;
+  animation: sbpSpin 0.9s linear infinite;
 }
 
-@keyframes libSpin {
+@keyframes sbpSpin {
   to {
     transform: rotate(360deg);
   }
 }
 
-.lib-loading {
+.sbp-loading {
   color: var(--primary-forest);
   font-size: 1.15rem;
   font-weight: 500;
 }
 
-.library-header {
+.sbp-header {
   margin-bottom: 40px;
   background: linear-gradient(
     90deg,
@@ -48,7 +48,7 @@
   overflow: hidden;
 }
 
-.library-title-row {
+.sbp-title-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -56,13 +56,13 @@
   gap: 20px;
 }
 
-.library-title-group {
+.sbp-title-group {
   display: flex;
   align-items: center;
   gap: 18px;
 }
 
-.lib-icon-box {
+.sbp-icon-box {
   width: 54px;
   height: 54px;
   border-radius: var(--radius-lg);
@@ -74,12 +74,12 @@
   flex-shrink: 0;
 }
 
-.lib-header-icon {
+.sbp-header-icon {
   color: var(--accent-gold-hover);
   fill: var(--accent-gold-hover);
 }
 
-.library-title-group h1 {
+.sbp-title-group h1 {
   font-family: var(--font-heading);
   font-size: 2rem;
   font-weight: 700;
@@ -87,12 +87,12 @@
   margin-bottom: 4px;
 }
 
-.library-subtitle {
+.sbp-subtitle {
   color: var(--primary-forest);
   font-size: 0.95rem;
 }
 
-.lib-count-pill {
+.sbp-count-pill {
   background: var(--bg-card);
   border: 1px solid var(--border-light);
   padding: 8px 18px;
@@ -106,13 +106,13 @@
   box-shadow: var(--shadow-sm);
 }
 
-.lib-count-pill span {
+.sbp-count-pill span {
   color: var(--primary-forest);
   font-weight: 700;
   font-size: 1.1rem;
 }
 
-.lib-empty {
+.sbp-empty {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -126,7 +126,7 @@
   margin: 20px auto;
 }
 
-.lib-empty-icon-wrap {
+.sbp-empty-icon-wrap {
   width: 96px;
   height: 96px;
   border-radius: 50%;
@@ -139,19 +139,19 @@
   border: 1px solid var(--border-light);
 }
 
-.lib-empty-icon {
+.sbp-empty-icon {
   color: var(--primary-forest);
   opacity: 0.7;
 }
 
-.lib-empty h2 {
+.sbp-empty h2 {
   font-family: var(--font-heading);
   font-size: 1.5rem;
   color: var(--primary-darker);
   margin-bottom: 12px;
 }
 
-.lib-empty p {
+.sbp-empty p {
   color: var(--text-muted);
   font-size: 0.98rem;
   max-width: 440px;
@@ -159,7 +159,7 @@
   margin-bottom: 30px;
 }
 
-.lib-explore-btn {
+.sbp-explore-btn {
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -172,30 +172,31 @@
   transition: all 0.3s ease;
 }
 
-.lib-explore-btn:hover {
+.sbp-explore-btn:hover {
   transform: translateX(2px);
 }
 
-.lib-grid {
+.sbp-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 28px;
   width: 100%;
 }
 
-.lib-card-item {
+.sbp-card-item {
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
-.lib-delete-btn {
+.sbp-delete-btn {
   position: absolute;
   top: 14px;
   left: 14px;
   z-index: 5;
-  background: var(--accent-gold-hover);
+  background-color: var(--accent-gold-hover);
   color: var(--primary-surface);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: var(--radius-full);
   width: 40px;
   height: 40px;
@@ -206,19 +207,39 @@
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.lib-delete-btn:hover {
+.sbp-delete-btn:hover {
   transform: scale(1.08);
 }
 
+.sbp-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.sbp-pagination button {
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  background: var(--primary-dark);
+  color: #fff;
+  font-weight: 600;
+}
+
+.sbp-pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 @media (max-width: 900px) {
-  .lib-grid {
+  .sbp-grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
   }
 }
-
 @media (max-width: 500px) {
-  .library-header {
+  .sbp-header {
     background: var(--primary-surface);
   }
 }
